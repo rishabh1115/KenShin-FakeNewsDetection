@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KenShin - FAKE NEWS DETECTION </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* background-image: linear-gradient(to right, rgb(225, 245, 251), white); */
+            background-image: url("{{ url_for('static', filename='bag3.png') }}");
+            background-size: contain;
+            color: rgb(116, 112, 112);
+            font-family: "Ancizar Serif", serif;
+        }
+
+        nav {
+            display: flex;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            justify-content: space-around;
+            align-items: center;
+            height: 90px;
+            background-image: linear-gradient(359deg, rgb(61, 51, 197), rgb(60, 106, 234));
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-weight: bold;
+            text-decoration: none;
+            color: rgb(201, 205, 221);
+            display: inline-block;
+            transition: all 0.5s ease;
+        }
+
+        nav a:hover {
+            color: rgb(201, 205, 221);
+            transform: scale(0.9);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            font-family: "Ancizar Serif", serif;
+            font-style: oblique;
+            list-style: none;
+            margin: 0 23px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+            transition: all 0.5s ease;
+        }
+
+        nav ul li a:hover {
+            color: rgb(144, 139, 139);
+            transform: scale(1.1);
+        }
+
+        .left a img {
+            position: relative;
+            top: 37px;
+            width: 5rem;
+            margin: 10px;
+        }
+
+        .left a {
+            position: relative;
+            top: -42px;
+            font-size: 2rem;
+        }
+
+        main hr {
+            border: none;
+            background-image: linear-gradient(90deg, rgb(184, 186, 201), rgb(214, 214, 214));
+            height: 1px;
+            margin: 30px 85px;
+        }
+
+        .firstsection {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 70px 0;
+        }
+
+        .firstsection>div {
+            width: 30%;
+        }
+
+        .leftsection {
+            font-family: 'Georgia', 'Arial', serif, sans-serif;
+            font-size: 3rem;
+        }
+
+        .leftsection .button {
+            padding: 10px;
+        }
+
+        .leftsection p {
+            font-size: large;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: bold;
+            color: rgb(100, 100, 100);
+        }
+
+        .rightsection img {
+            width: 80%;
+            height: 250px;
+            margin: 20px 0;
+        }
+
+        .real {
+            font-style: italic;
+            color: #0c640e;
+        }
+
+        .fake {
+            font-style: italic;
+            color: #a80404;
+        }
+
+        .Truth {
+            font-weight: 600;
+            font-style: italic;
+            color: #0d53a2;
+        }
+
+        .analyze {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 28px;
+            margin-top: 20px;
+            background-image: linear-gradient(34deg, rgb(61, 51, 197), rgb(60, 106, 234));
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        .analyze:hover {
+            background-image: linear-gradient(0deg, rgb(159, 153, 250), rgb(220, 222, 232));
+            color: rgb(23, 23, 23);
+            transform: scale(0.9);
+        }
+
+        .analyze img {
+            width: 24px;
+            height: 26px;
+            margin-right: 10px;
+        }
+
+        #element {
+            height: 100%;
+        }
+
+        #Thought {
+            font-style: italic;
+            font-weight: bold;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: medium;
+            color: rgb(138 69 69);
+        }
+
+        .secondsection {
+            max-width: 80%;
+            margin: auto;
+            height: 720px;
+        }
+
+        .secondsection h1 {
+            color: rgb(5, 5, 72);
+            font-size: 1.8rem;
+            margin-left: 50px;
+        }
+
+        .feat-up {
+            color: rgb(62, 62, 62);
+        }
+
+        .feat-down {
+            color: rgb(62, 62, 62);
+            margin-left: 180px;
+        }
+
+        .secondsection {
+            background-color: rgb(247, 247, 255);
+            padding: 30px;
+            border-radius: 10px;
+            color: rgb(54, 53, 53);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .secondsection .horizontal {
+            background-color: rgb(134, 128, 128);
+            height: 2px;
+            margin: 80px 0;
+            display: flex;
+        }
+
+        .secondsection .vertical {
+            background-color: rgb(134, 128, 128);
+            height: 90px;
+            width: 2px;
+            margin: 0 150px;
+        }
+
+        .img-source {
+            width: 50px;
+            position: relative;
+            top: -58px;
+            left: -21px;
+        }
+
+        .vertical {
+            background-color: transparent;
+            padding: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .vertical:hover {
+            background-color: rgb(242, 252, 255);
+            transform: scale(1.05);
+        }
+
+        .vertical:hover .vertical-title,
+        .vertical:hover .vertical-text {
+            color: rgb(6, 2, 37);
+            transition: color 0.3s ease;
+        }
+
+        .vertical-title {
+            position: relative;
+            top: 40px;
+            right: 27px;
+            color: rgb(6, 7, 69);
+            font-size: 23px;
+            font-family: ui-monospace;
+        }
+
+        .vertical-text {
+            position: relative;
+            top: 55px;
+            right: 27px;
+            width: 170px;
+            color: darkslategray;
+            font-size: 17px;
+            font-family: ui-rounded;
+        }
+
+        footer {
+            background-color: rgb(6, 6, 44);
+            height: 250px;
+        }
+
+        .footer-text {
+            display: flex;
+            padding: 25px 120px;
+            justify-content: space-between;
+        }
+
+        .footer-text ul {
+            list-style: none;
+        }
+
+        footer ul a {
+            text-decoration: none;
+            color: rgb(235, 246, 248);
+            display: inline-block;
+            transition: all 0.5s ease;
+        }
+
+        footer ul a:hover {
+            color: rgb(144, 139, 139);
+            transform: scale(1.1);
+        }
+
+        .footer-first {
+            color: rgb(235, 246, 248);
+            padding: 20px 50px;
+            width: 200px;
+        }
+
+        .footer-social {
+            text-align: center;
+        }
+
+        .footer-social img {
+            width: 30px;
+        }
+
+        .footer-rights {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left">
+                <a href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='logo.png') }}">
+                    KenShin
+                </a>
+            </div>
+            <div class="right">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('how') }}">How it Works</a></li>
+                    <li><a href="{{ url_for('about') }}">Members</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="firstsection">
+            <div class="leftsection">
+                Is it <span class="real">Real</span> or <span class="fake">Fake</span>?
+                <br>
+                <div>Don’t guess. Investigate, <br>Let <div class="Truth">KenShin</div> verify it for you...</div>
+                <div class="button">
+                    <button onclick="location.href='{{ url_for('prediction') }}'" class="analyze">
+                        <img src="{{ url_for('static', filename='a.jpg') }}" alt="Search Icon">
+                        Let's Analyze
+                    </button>
+                </div>
+                <br>
+                <br>
+                <p>Quotes....</p>
+                <span id="Thought"></span>
+
+            </div>
+            <div class="rightsection">
+
+                <span id="element"></span>
+            </div>
+        </section>
+        <hr>
+        <section class="secondsection">
+            <span class="feat-up">Our System's</span>
+            <h1>Detection Features</h1>
+            <span class="feat-down">to ensure Accurate Results</span>
+            <div class="horizontal">
+                <div class="vertical">
+                    <img class="img-source" src="{{ url_for('static', filename='i2.jpg') }}" alt="Source">
+                    <div class="vertical-title">
+                        Source Verification
+                    </div>
+                    <div class="vertical-text">
+                        Cross-references with our database of over 50,000 news sources to evaluate reliability and
+                        historical accuracy.The model achieved an accuracy of approximately 71%.
+                    </div>
+                </div>
+                <div class="vertical">
+                    <img class="img-source" src="{{ url_for('static', filename='a1.png') }}" alt="Source">
+                    <div class="vertical-title">
+                        Content Analysis
+                    </div>
+                    <div class="vertical-text">
+                        Uses natural language processing to detect misleading language, sensationalism, and logical
+                        inconsistencies.
+                    </div>
+                </div>
+                <div class="vertical">
+                    <img class="img-source" src="{{ url_for('static', filename='f.png') }}" alt="Source">
+                    <div class="vertical-title">
+                        Fact Database
+                    </div>
+                    <div class="vertical-text">
+                        Compares claims against our extensive fact database with millions of verified data points.
+                    </div>
+                </div>
+                <div class="vertical">
+                    <img class="img-source" src="{{ url_for('static', filename='g.png') }}" alt="Source">
+                    <div class="vertical-title">
+                        Author Reputation
+                    </div>
+                    <div class="vertical-text">
+                        Evaluates the author's history and credibility based on past publications and fact-checks.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-text">
+            <div class="footer-first">
+                <h3>KenShin</h3>
+                <br>
+                A Fake news detection. Helping create a more informed digital world.
+            </div>
+            <div class="footer-second">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <br>
+                    <li><a href="{{ url_for('how') }}">How it Works</a></li>
+                    <br>
+                    <li><a href="{{ url_for('about') }}">Members</a></li>
+                    <br>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/_._harsh_kumar__06/#"><img src="{{ url_for('static', filename='ins.png') }}" alt="Instagram"></a>
+            <a href="/"><img src="{{ url_for('static', filename='t.png') }}" alt="Instagram"></a>
+            <a href="/"><img src="{{ url_for('static', filename='git.png') }}" alt="Instagram"></a>
+        </div>
+        <div class="footer-rights">
+            Copyright &#169; Fake News Detection| All rights Reserved
+        </div>
+    </footer>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- Setup and start animation! -->
+    <script>
+        var typedImages = new Typed('#element', {
+            strings: ['<img src="{{ url_for("static", filename="f8.jpg") }}">', '<img src="{{ url_for("static", filename="f3.jpg") }}">', '<img src="{{ url_for("static", filename="f1.jpg") }}">', '<img src="{{ url_for("static", filename="bg3.jpg") }}">', '<img src="{{ url_for("static", filename="f5.jpg") }}">', '<img src="{{ url_for("static", filename="f6.jpg") }}">', '<img src="{{ url_for("static", filename="f7.jpg") }}">'],
+            typeSpeed: 400,
+            backDelay: 2000,
+            loop: true,
+        });
+    </script>
+    <script>
+        var typedQuotes = new Typed('#Thought', {
+            strings: ['"Not everything online is true."', '"Real news has evidence. Fake news has emotion."', '"Fake news spreads faster than facts."', '"Be curious, not just convinced."', '"Read beyond the headline."'],
+            typeSpeed: 50,
+            backDelay: 3000,
+            loop: true,
+        });
+    </script>
+
+</body>
+
+</html>

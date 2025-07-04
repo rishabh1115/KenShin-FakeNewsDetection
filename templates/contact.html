@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - KenShin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: linear-gradient(to right, rgb(225, 245, 251), white);
+            background-image: url("{{ url_for('static', filename='bag3.png') }}");
+            color: rgb(116, 112, 112);
+            font-family: "Ancizar Serif", serif;
+        }
+
+        nav {
+            display: flex;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            justify-content: space-around;
+            align-items: center;
+            height: 90px;
+            background-image: linear-gradient(359deg, rgb(61, 51, 197), rgb(60, 106, 234));
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-weight: bold;
+            text-decoration: none;
+            color: rgb(201, 205, 221);
+            display: inline-block;
+            transition: all 0.5s ease;
+        }
+
+        nav a:hover {
+            color: rgb(201, 205, 221);
+            transform: scale(0.9);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            font-family: "Ancizar Serif", serif;
+            font-style: oblique;
+            list-style: none;
+            margin: 0 23px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+            transition: all 0.5s ease;
+        }
+
+        nav ul li a:hover {
+            color: rgb(144, 139, 139);
+            transform: scale(1.1);
+        }
+
+        .left a img {
+            position: relative;
+            top: 37px;
+            width: 5rem;
+            margin: 10px;
+        }
+
+        .left a {
+            position: relative;
+            top: -42px;
+            font-size: 2rem;
+            display: inline-block;
+        }
+
+        main {
+            padding: 80px 100px;
+        }
+
+        .contact-box {
+            background-color: rgb(247, 247, 255);
+            padding: 40px;
+            border-radius: 10px;
+            color: rgb(54, 53, 53);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .contact-box h1 {
+            color: rgb(5, 5, 72);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-box p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgb(66, 64, 64);
+        }
+
+        .email-highlight {
+            font-weight: bold;
+            color: rgb(45, 51, 146);
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background-color: rgb(6, 6, 44);
+            height: 250px;
+        }
+
+        .footer-text {
+            display: flex;
+            padding: 25px 120px;
+            justify-content: space-between;
+        }
+
+        .footer-text ul {
+            list-style: none;
+        }
+
+        footer ul a {
+            text-decoration: none;
+            color: rgb(235, 246, 248);
+            display: inline-block;
+            transition: all 0.5s ease;
+        }
+
+        footer ul a:hover {
+            color: rgb(144, 139, 139);
+            transform: scale(1.1);
+        }
+
+        .footer-first {
+            color: rgb(235, 246, 248);
+            padding: 20px 50px;
+            width: 200px;
+        }
+
+        .footer-social {
+            text-align: center;
+        }
+
+        .footer-social img {
+            width: 30px;
+            display: inline-block;
+        }
+
+        .footer-rights {
+            text-align: center;
+            color: rgb(235, 246, 248);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left"><a href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='logo.png') }}">
+                    KenShin</a>
+            </div>
+            <div class="right">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('how') }}">How it Works</a></li>
+                    <li><a href="{{ url_for('about') }}">Members</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="contact-box">
+            <h1>Contact Us</h1>
+            <p>
+                Thank you for your interest in our Fake News Detection Model/Idea. We are always happy to connect and
+                hear from individuals, educators, or institutions who would like to know more.
+                <br><br>
+                For any queries, suggestions, or support, feel free to reach out to us directly at:
+                <br>
+                <span class="email-highlight">hrsh.singh06@gmail.com</span>
+                <br><br>
+                We appreciate your time and interest. Let’s make the digital world more truthful together.
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-text">
+            <div class="footer-first">
+                <h3>KenShin</h3>
+                <br>
+                A Fake news detection. Helping create a more informed digital world.
+            </div>
+            <div class="footer-second">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <br>
+                    <li><a href="{{ url_for('how') }}">How it Works</a></li>
+                    <br>
+                    <li><a href="{{ url_for('about') }}">Members</a></li>
+                    <br>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/_._harsh_kumar__06/#"><img src="{{ url_for('static', filename='ins.png') }}" alt="Instagram"></a>
+            <a href="/"><img src="{{ url_for('static', filename='t.png') }}" alt="Twitter"></a>
+            <a href="/"><img src="{{ url_for('static', filename='git.png') }}" alt="GitHub"></a>
+        </div>
+        <div class="footer-rights">
+            Copyright &#169; Fake News Detection | All rights Reserved
+        </div>
+    </footer>
+</body>
+
+</html>

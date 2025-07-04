@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - KenShin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: linear-gradient(to right, rgb(225, 245, 251), white);
+            background-image: url("{{ url_for('static', filename='bag3.png') }}");
+            color: rgb(116, 112, 112);
+            font-family: "Ancizar Serif", serif;
+        }
+
+        nav {
+            display: flex;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            justify-content: space-around;
+            align-items: center;
+            height: 90px;
+            background-image: linear-gradient(359deg, rgb(61, 51, 197), rgb(60, 106, 234));
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-weight: bold;
+            text-decoration: none;
+            color: rgb(201, 205, 221);
+            display: inline-block;
+            transition: all 0.5s ease;
+        }
+
+        nav a:hover {
+            color: rgb(201, 205, 221);
+            transform: scale(0.9);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            font-family: "Ancizar Serif", serif;
+            font-style: oblique;
+            list-style: none;
+            margin: 0 23px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+            transition: all 0.5s ease;
+        }
+
+        nav ul li a:hover {
+            color: rgb(144, 139, 139);
+            transform: scale(1.1);
+        }
+
+        .left a img {
+            position: relative;
+            top: 37px;
+            width: 5rem;
+            margin: 10px;
+        }
+
+        .left a {
+            position: relative;
+            top: -42px;
+            font-size: 2rem;
+        }
+
+        .how-section {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+
+        .how-section>div {
+            width: 40%;
+            min-width: 300px;
+            margin: 20px;
+        }
+
+        .how-text {
+            font-size: 1.3rem;
+            background-color: #f6f9fe;
+            padding: 30px;
+            border-radius: 10px;
+            color: #3b3a3a;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .how-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: rgb(6, 6, 44);
+            height: 267px;
+        }
+
+        .footer-text {
+            display: flex;
+            padding: 14px 80px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-text ul {
+            list-style: none;
+        }
+
+        footer ul a {
+            text-decoration: none;
+            color: rgb(235, 246, 248);
+            display: inline-block;
+            transition: all 0.5s ease;
+        }
+
+        footer ul a:hover {
+            color: rgb(144, 139, 139);
+            transform: scale(1.1);
+        }
+
+        .footer-first {
+            color: rgb(235, 246, 248);
+            padding: 20px 50px;
+            width: 200px;
+        }
+
+        .footer-social {
+            text-align: center;
+        }
+
+        .footer-social img {
+            width: 30px;
+            margin: 10px;
+        }
+
+        .footer-rights {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left"><a href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='logo.png') }}">
+                    KenShin</a>
+            </div>
+            <div class="right">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('how') }}">How it Works</a></li>
+                    <li><a href="{{ url_for('about') }}">Members</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="how-section">
+            <div class="how-text">
+                <h2>How It Works</h2>
+                <br><br>
+                <p>
+                    Using our Fake News Detection system is simple, intuitive, and fast. Here's how you can get started:
+                    <br><br><br>
+                    1. Begin at the Homepage
+                    On the main home screen of our website, you'll notice a button labeled "Let's Analyze". This is your
+                    starting point.
+                    <br><br>
+                    2. Redirect to the Prediction Page
+                    Upon clicking the "Let's Analyze" button, you'll be seamlessly redirected to our Prediction Page —
+                    this is where the analysis takes place.
+                    <br><br>
+                    3. Input the News Article
+                    Once on the prediction page, you'll see a large text box labeled for article input. Simply paste or
+                    type the news article you want to verify.
+                    <br><br>
+                    4. Click Analyze
+                    Below the text box, click the "Analyze" button. Our intelligent model will get to work instantly.
+                    <br><br>
+                    5. Get Your Result
+                    Within moments, the system will provide you with a clear and reliable result — indicating whether
+                    the news is likely real or fake.
+                    <br><br>
+                    Our tool leverages advanced machine learning models and linguistic analysis techniques to detect
+                    misleading or fabricated content with precision.
+                    <br><br>
+                    <b>Stay informed. Stay empowered.</b>
+                    Check before you believe — <i>because truth deserves a second look.</i>
+                </p>
+            </div>
+            <div class="how-image">
+                <img src="{{ url_for('static', filename='how1.png') }}" alt="How it works illustration">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-text">
+            <div class="footer-first">
+                <h3>KenShin</h3>
+                <br>
+                A Fake news detection. Helping create a more informed digital world.
+            </div>
+            <div class="footer-second">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <br>
+                    <li><a href="{{ url_for('how') }}">How it Works</a></li>
+                    <br>
+                    <li><a href="{{ url_for('about') }}">Members</a></li>
+                    <br>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/_._harsh_kumar__06/#"><img src="{{ url_for('static', filename='ins.png') }}" alt="Instagram"></a>
+            <a href="/"><img src="{{ url_for('static', filename='t.png') }}" alt="Twitter"></a>
+            <a href="/"><img src="{{ url_for('static', filename='git.png') }}" alt="GitHub"></a>
+        </div>
+        <div class="footer-rights">
+            Copyright &#169; Fake News Detection | All rights reserved
+        </div>
+    </footer>
+</body>
+
+</html>
